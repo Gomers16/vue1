@@ -9,12 +9,15 @@ import HelloWorld from './components/HelloWorld.vue'
 
     <div class="wrapper">
 
-      <HelloWorld msg="COVAR!" />
+      <HelloWorld msg="COVAR" />
 
       <nav>
-        <RouterLink to="/">Inicio</RouterLink>
+      <RouterLink to="/">Inicio</RouterLink>
       <router-link to="/servicios">Servicios</router-link>
       <router-link to="/precios">Precios</router-link>
+      <router-link to="/login">Login</router-link> |
+      <router-link to="/register">Registro</router-link> |
+      <router-link to="/reset-password">Recuperar Contraseña</router-link>
       </nav>
     </div>
   </header>
