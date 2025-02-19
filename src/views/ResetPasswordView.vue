@@ -1,51 +1,110 @@
 <template>
-    <div class="auth-container">
-      <h2>Restablecer Contraseña</h2>
-      <form @submit.prevent="resetPassword">
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" v-model="email" required />
-        </div>
-        <button type="submit">Enviar enlace</button>
+  <div class="reset-container">
+    <div class="reset-box">
+      <img src="@/assets/icono-candado.png" alt="Lock Icon" class="lock-icon" />
+      <h2>RESET PASSWORD</h2>
+      <form @submit.prevent="handleReset">
+        <label>New Password:</label>
+        <input type="password" v-model="newPassword" required />
+
+        <label>Repeat Password:</label>
+        <input type="password" v-model="repeatPassword" required />
+
+        <button type="submit">CHANGE PASSWORD</button>
+
+        <!-- Enlace para volver al login -->
+        <p class="login-again">
+          <a href="#" @click="goToLogin">LOG IN AGAIN</a>
+        </p>
       </form>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        email: ''
-      };
-    },
-    methods: {
-      resetPassword() {
-        console.log("Restablecer contraseña para", this.email);
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      newPassword: "",
+      repeatPassword: "",
+    };
+  },
+  methods: {
+    handleReset() {
+      if (this.newPassword !== this.repeatPassword) {
+        alert("Passwords do not match!");
+        return;
       }
-    }
-  };
-  </script>
-  
-  <style scoped>
-  .auth-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  .form-group {
-    margin-bottom: 15px;
-  }
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  </style>
-  
+      alert("Password changed successfully!");
+    },
+    goToLogin() {
+      this.$router.push("/login");
+    },
+  },
+};
+</script>
+
+<style scoped>
+/* Contenedor principal */
+.reset-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Caja de recuperación */
+.reset-box {
+  background: rgba(255, 255, 255, 0.171);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  width: 320px;
+  color: white;
+  position: relative;
+}
+
+/* Icono del candado */
+.lock-icon {
+  width: 50px;
+  margin-bottom: 10px;
+}
+
+/* Estilos de input y botones */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #4da6ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Enlace de volver al login */
+.login-again {
+  margin-top: 15px;
+}
+
+.login-again a {
+  color: white;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.login-again a:hover {
+  text-decoration: underline;
+}
+</style>
+
