@@ -8,7 +8,7 @@ const route = useRoute();
 
 <template>
   <div id="app">
-    <header v-if="route.path !== '/login'">
+    <header v-if="!['/login', '/reset-password'].includes(route.path)">
       <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
       <div class="wrapper">
@@ -30,7 +30,10 @@ const route = useRoute();
     </header>
 
     <!-- Aquí se cargan las vistas -->
-    <main :class="{ 'login-background': route.path === '/login' }">
+    <main :class="{ 
+      'login-background': route.path === '/login', 
+      'reset-password-background': route.path === '/reset-password' 
+    }">
       <RouterView />
     </main>
   </div>
@@ -73,6 +76,16 @@ const route = useRoute();
 /* Fondo para la vista de login */
 .login-background {
   background: url("@/assets/fondo-login.jpeg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fondo para la vista de restablecer contraseña */
+.reset-password-background {
+  background: url("@/assets/fondo-reset-password.jpeg") no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
   display: flex;
