@@ -1,61 +1,73 @@
 <template>
-    <div class="auth-container">
-      <h2>Registro</h2>
-      <form @submit.prevent="register">
-        <div class="form-group">
-          <label>Nombre</label>
-          <input type="text" v-model="name" required />
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" v-model="email" required />
-        </div>
-        <div class="form-group">
-          <label>Contraseña</label>
-          <input type="password" v-model="password" required />
-        </div>
-        <button type="submit">Registrarse</button>
-      </form>
+  <div class="reset-password-container">
+    <div class="reset-password-card">
+      <font-awesome-icon icon="lock" class="lock-icon" />
+      <h2>RECUPERAR CONTRASEÑA</h2>
+      <label for="new-password">Nueva Contraseña:</label>
+      <input type="password" id="new-password" v-model="newPassword" />
+      <label for="repeat-password">Repetir Contraseña:</label>
+      <input type="password" id="repeat-password" v-model="repeatPassword" />
+      <button @click="resetPassword">RESTABLECER CONTRASEÑA</button>
+      <router-link to="/login">INICIAR SESIÓN</router-link>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        name: '',
-        email: '',
-        password: ''
-      };
-    },
-    methods: {
-      register() {
-        console.log("Registrarse con", this.name, this.email, this.password);
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      newPassword: '',
+      repeatPassword: ''
+    };
+  },
+  methods: {
+    resetPassword() {
+      if (this.newPassword === this.repeatPassword) {
+        alert('Contraseña restablecida correctamente');
+      } else {
+        alert('Las contraseñas no coinciden');
       }
     }
-  };
-  </script>
-  
-  <style scoped>
-  .auth-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-  .form-group {
-    margin-bottom: 15px;
-  }
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  </style>
-  
+};
+</script>
+
+<style scoped>
+.reset-password-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: none; /* Mantiene el fondo original */
+}
+
+.reset-password-card {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.lock-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+</style>
