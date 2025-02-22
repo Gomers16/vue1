@@ -1,16 +1,16 @@
-<!-- src/views/LoginView.vue -->
+<!-- src/views/ResetPasswordView.vue -->
 <template>
   <div class="login-container">
-    <LoginForm />
+    <ResetPassword />
   </div>
 </template>
 
 <script>
-import LoginForm from "@/components/LoginForm.vue";
+import ResetPassword from "@/components/Forms/ResetPassword.vue";
 
 export default {
   components: {
-    LoginForm,
+    ResetPassword,
   },
 };
 </script>
